@@ -1,3 +1,4 @@
+import re
 from flask import Flask, request
 import time, json, requests
 from datetime import datetime
@@ -15,23 +16,22 @@ def work():
     request_data = request.get_json()
     print('request data:', request_data)
 
-    size = int(request_data['size'])
-    popularity = request_data['popularity']
-    start_time = request_data['start_time']
+    video_time = int(request_data['video_time'])
 
     # simulate work:
-    if (size < 1000):
-        time.sleep(5)
-    elif (size < 10000):
-        time.sleep(10)
+    if (video_time < 1000):
+        for i in range(1000):
+            i*i
+    elif (video_time < 10000):
+        for i in range(10000):
+            i*i
     else:
-        time.sleep(15)
-
-    data = json.dumps({'size': size, 'popularity': popularity, 'start_time': start_time, 'end_time': datetime.now()}, default=str)
+        for i in range(100000):
+            i*i
 
     # requests.post(url=url, data=data) # todo: uncomment this when url will be real
 
-    return data
+    return request_data
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=True)
