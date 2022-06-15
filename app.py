@@ -1,20 +1,20 @@
-import re
 from flask import Flask, request
-import time, json, requests
-from datetime import datetime
+import requests
 
 app = Flask(__name__)
 
-url = "http://localhost:5000" # todo: change to real url 
+url = "management.default.svc.cluster.local:8080" # todo: add path to url
 
 @app.route('/')
 def hello():
     return '<h1>Hello, World!</h1>'
 
-@app.route('/work', methods=['POST'])
-def work():
+@app.route('/watch', methods=['POST'])
+def watch():
     request_data = request.get_json()
     print('request data:', request_data)
+
+    requests.post(url=url, data=request_data)
 
     video_time = int(request_data['video_time'])
 
@@ -28,8 +28,6 @@ def work():
     else:
         for i in range(100000):
             i*i
-
-    # requests.post(url=url, data=data) # todo: uncomment this when url will be real
 
     return request_data
 
