@@ -19,7 +19,6 @@ def send():
 @app.route('/watch', methods=['POST'])
 def watch():
     request_data = request.get_json()
-    print('request data:', request_data)
 
     video_time = int(request_data['video_time'])
 
