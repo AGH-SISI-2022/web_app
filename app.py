@@ -26,13 +26,13 @@ def watch():
 
     # simulate work:
     if (video_time < 1000):
-        simulate_time = 2
+        simulate_time = 0.1
 
     elif (video_time < 100000):
-        simulate_time = 5
+        simulate_time = 0.2
 
     else:
-        simulate_time = 10
+        simulate_time = 0.3
 
     timeout = time.time() + float(simulate_time)
 
